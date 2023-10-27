@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# printing "Best school" 10 tymes using while loop
+h=0
+m=0
+if [ $h -eq 0 ]
+then
+	echo "Hour: $h"
+fi
+while ((h < 13))
+do
+	if  [ $m -eq 59 ] && [ $h -ne 13 ]
+	then
+		m=0
+		((h++))
+		if [ $h = 13 ]
+		then
+			break
+		fi
+		echo "Hour: $h"
+	fi
+	if [ $m -lt 60 ]
+	then
+		((m++))
+		echo $m
+	fi
+done
