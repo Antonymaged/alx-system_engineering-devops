@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+# printing all the files inside the current directory
+l=$(ls)
+for i in $l; do
+  echo "$i" | cut -d '-' -f2
+done
