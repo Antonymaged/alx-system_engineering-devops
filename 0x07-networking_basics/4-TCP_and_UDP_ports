@@ -1,0 +1,3 @@
+#!/usr/bin/env bash
+# prints all the protocols
+netstat --programs -l
