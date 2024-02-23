@@ -1,8 +1,8 @@
-#make a new file caled school contains the string I love Puppet
+#create a file caled school contains "I love puppet"
 
-file{'/tmp/school':
-owner => 'www-data',
-group => 'www-data',
-mode => '0744',
-content => 'I love Puppet',
+file{'tmp/school':
+  mode    => '0744',
+  owner   => 'www-data',
+  group   => 'www-data',
+  content => 'I love Puppet',
 }
