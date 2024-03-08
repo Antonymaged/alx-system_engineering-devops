@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 #instaling nginx
 
-apt-get update -y
-apt-get install nginx -y
+sudo apt-get update -y
+sudo apt-get install nginx -y
 
 echo "Hello World!" > /usr/share/nginx/html/index.html
 
-service nginx restart
+sudo service nginx restart
