@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+#debuging the problem of refuse to connect on port 80 by instaling nginx
+sudo apt update
+sudo apt install nginx
