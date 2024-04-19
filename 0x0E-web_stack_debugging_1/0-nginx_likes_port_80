@@ -2,3 +2,7 @@
 #debuging the problem of refuse to connect on port 80 by instaling nginx
 sudo apt update
 sudo apt install nginx
+rm /etc/nginx/sites-available/*
+rm /etc/nginx/sites-enabled/*~
+sed -i 's/8080/80/g' /etc/nginx/sites-enabled/default
+sudo service nginx restart
