@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+#Configure your domain zone so that the subdomain www points to your load-balancer IP (lb-01). Let’s also add other subdomains to make our life easier, and write a Bash script that will display information about subdomains.
+# shellcheck disable=SC2086
+if [ -n "$1" ] && [ -z "$2" ]; then
+	subdomains=("www" "lb-01" "web-01" "web-02")
+	for subdomain in "${subdomains[@]}"; do
+		echo "The subdomain $subdomain is a $(dig $subdomain.$1 | awk '/^'"$subdomain.$1"'/ {print $4}') record and points to $(dig $subdomain.$1 | awk '/^'"$subdomain.$1"'/ {print $5}')"
+	done
+fi
+
+#shellcheck disable=SC2086
+if [ -n "$1" ] && [ -n "$2" ]; then
+	echo "The sudomain $2 is a $(dig $2.$1 | awk '/^'"$2.$1"'/ {print $4}') record and points to $(dig $2.$1 | awk '/^'"$2.$1"'/ {print $5}')"
+fi
