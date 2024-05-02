@@ -1,15 +1,18 @@
 #!/usr/bin/env bash
 # Configure Nginx so that its HTTP response contains a custom header
 # HTTP response contains a custom header for web1 and web2
-var=$(hostname)
-new_string="error_page 404 \/custom_404.html;\n location \/redirect_me {\n return 301 \$scheme:\/\/www.google.com;"
-new_string2="server {\n\tadd_header X-Served-By $var;"
 
-apt-get update -y
-apt-get install nginx -y
+new="\\\trewrite ^/redirect_me https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
+new2="\n\\terror_page 404 /404.html;\n\tlocation = /var/www/html/404.html {\n\t\tinternal;\n\t}"
+pat="#error_page 404 /404.html;"
+
+sudo apt-get update -y
+sudo apt-get install nginx -y
 echo "Hello World!" > /usr/share/nginx/html/index.html
-mkdir -p /var/www/html
+chown -R ubuntu /var/www
 echo "Ceci n'est pas une page" > /var/www/html/custom_404.html
-sudo sed -i -E "s/^[^#]+location \/ \{/$new_string/" /etc/nginx/sites-available/default
-sudo sed -i -E "s/^server \{/$new_string2/" /etc/nginx/sites-available/default
-sudo service nginx start
+sudo sed -i "30i $new" /etc/nginx/sites-available/default
+sudo sed -i "47i\ $pat$new2" /etc/nginx/sites-available/default
+sudo sed -i "24i add_header X-Served-By $HOSTNAME;" /etc/nginx/sites-available/default
+sudo service nginx restart
+sudo service nginx reload
