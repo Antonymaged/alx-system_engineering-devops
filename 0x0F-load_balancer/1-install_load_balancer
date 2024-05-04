@@ -11,6 +11,6 @@ frontend f
 backend b
 	mode http
 	balance roundrobin
-	server 448529-web-01 54.87.206.27:80 check
-	server 448529-web-02 107.23.163.211:80 check" >> /etc/haproxy/haproxy.cfg
+	server web-01 54.87.206.27:80 check
+	server web-02 107.23.163.211:80 check" >> /etc/haproxy/haproxy.cfg
 service haproxy restart
